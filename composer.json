@@ -1,0 +1,36 @@
+{
+	"name": "marks12/tsv-consult",
+	"description":	"Consultation plan and registration",
+	"type":         "library",
+	"license":      "BSD-3-Clause",
+	"homepage":         "https://github.com/marks12/TsvConsult",
+	"keywords": [
+					"Consultation",
+					"Консультация",
+	         		"zf2"
+		    	],
+     "authors": [
+          {
+               "name":      "Vladimir Tsarevnikov",
+               "email":     "tsarevnikov.v@gmail.com",
+               "homepage":  "http://serveon.ru/",
+               "role":      "Developer"
+          }
+     ],
+     "minimum-stability": "dev",
+     "require": {
+          "php": ">=5.3.3",
+          "zendframework/zend-cache":                   "~2.1",
+          "marks12/tsv-consult":                        "*"
+     },
+     "suggests": {
+          "zendframework/zend-developer-tools": "Comment 0",
+          "zf-commons/zfc-user":                "Comment 1",
+          "zf-commons/zfc-user-doctrine-orm":   "Comment 2"
+     },
+     "autoload": {
+          "psr-0": {
+               "TsvConsult\\": "src/"
+          }
+     }
+}

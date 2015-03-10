@@ -20,7 +20,7 @@
  * Never commit plaintext passwords to the source code repository.
  */
 
-define('ZF2_PATH', realpath(__DIR__ . '/../../../vendor/zendframework/zendframework/library/'));
+define('ZF2_PATH', realpath(__DIR__ . '/../../../../vendor/zendframework/zendframework/library/'));
 
 /**
  * The bootstrap supports several more options, however most modules will
@@ -28,13 +28,13 @@ define('ZF2_PATH', realpath(__DIR__ . '/../../../vendor/zendframework/zendframew
  */
 
 // Override the module name (usually because the namespace is something besides the root foldername)
-// define('MODULE_NAME', 'SomeModuleName');
+//  define('MODULE_NAME', 'TsvConsult');
 
 // Add additional paths where additional modules can be found
 // $additionalModulePaths = array(
-//     '/usr/share/lib/php/',
+//     '/var/www/lib/php/',
 //     'SomeVendor' => realpath('/path/for/some/vendor/library'),
 // );
 
 // Add dependencies, for example a vendor may create several modules that all depend on a common library
-// $moduleDependencies = array('SomeVendor');
+// $moduleDependencies = array('marks12');

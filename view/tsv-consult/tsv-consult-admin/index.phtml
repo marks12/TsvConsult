@@ -1,0 +1,32 @@
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.3/themes/smoothness/jquery-ui.css">
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.3/jquery-ui.js"></script>
+
+<style>
+.ui-datepicker-group {
+	float: left; 
+	margin-right: 20px;
+	height: 280px;
+}
+
+.ui-datepicker-inline {
+	height: auto;
+	max-width:100%;
+}
+</style>
+
+<div id="from"></div>
+
+ <script>
+  $(function() {
+    $( "#from" ).datepicker({
+      numberOfMonths: 12,
+      showButtonPanel: true,
+      dateFormat: 'dd-MM-yyyy',
+      firstDay: 1, // rows starts on Monday
+      minDate: new Date(),
+      maxDate: '+1Y',
+    });
+    
+  });
+  </script>

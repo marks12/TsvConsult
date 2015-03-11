@@ -1,32 +1,136 @@
 <link rel="stylesheet" href="//code.jquery.com/ui/1.11.3/themes/smoothness/jquery-ui.css">
-<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<!-- <script src="//code.jquery.com/jquery-1.10.2.js"></script> -->
 <script src="//code.jquery.com/ui/1.11.3/jquery-ui.js"></script>
+<script src="http://serveon.ru/lib/jquery.ui/datepicker/datepicker-ru.js"></script>
 
 <style>
 .ui-datepicker-group {
-	float: left; 
-	margin-right: 20px;
-	height: 280px;
+	margin: 10px 7px auto 7px;
+	height: 260px;
 }
-
+.ui-widget {
+	font-size: 0.9em;
+}
 .ui-datepicker-inline {
-	height: auto;
-	max-width:100%;
+	height: auto !important;
+	width: auto !important;;
+}
+.ui-widget-content {
+	border: 0px;
+	background: #ffffff;
+	color: #222222;
+}
+.selected_date {
+	float: right;
+	width: 30%;
+	min-height: 550px;
 }
 </style>
+<div class="panel panel-default">
+  <div class="panel-body">
+    Пожалуйста укажите на календаре запланированные мероприятия. Вы можете выбрать как 1 дневные мероприятия, так и 
+    мероприятия длительностью несколько дней, недель месяцев и т.п. Для выбора диапазона дат необходимо указать начальную дату,
+    отметить ее как начальную и конечную. Для сохранения запланирвоанных мероприятий, пожалуйста не забудьте 
+    сохранить выбранные результаты.
+  </div>
+</div>
 
-<div id="from"></div>
 
- <script>
+	<div class="selected_date">
+		<h1>Запланировано</h1>
+		<div id="selected_date" data-toggle="popover" title="Popover title" data-content="And here's some amazing content. It's very engaging. Right?">Ничего не выбрано</div>
+	</div>
+	<div id="plane"></div>
+	
+<div class="clearfix"></div>
+
+<script>
+ var from = '';
+ var to = '';
+ var day, month, year;
+
+ function get2digits(data)
+ {
+	if(data.length < 2)
+		return '0'+data;
+	else
+		return data;
+ }
+
+ function add1DayMeet(date)
+ {
+	if($('#selected_date').html() == 'Ничего не выбрано')
+		$('#selected_date').html(newMeet(date));
+	else
+		$('#selected_date').append(newMeet(date));
+ }
+
+ function newMeet(dateStart, dateEnd)
+ {
+	var text = '';
+	var dateStart, dateEnd;
+	
+	if(dateEnd != 'undefined')
+	text += 'Даты: '+dateStart + ' - ' + dateEnd + ' <br>';
+	else
+	text += 'Дата события: '+dateStart;
+		
+
+	return text;
+ }
+ 
+ function setPopover(selectedDate) {
+	 
+ 	day = selectedDate.substr(0,2);
+	month = selectedDate.substr(3,2);
+	year = selectedDate.substr(6,4);
+
+	var cur = $('td[data-month="'+(month-1)*1+'"][data-year="'+(year)*1+'"]').find('a:contains("'+(day)*1+'")').first();
+
+	cur.prop("title",'Выбрать действие');
+	cur.prop("data-toggle","popover");
+	cur.popover("destroy");
+	cur.popover("show");
+
+	$(".ui-datepicker-current-day .popover-content").html(popoverText(selectedDate));
+	
+ }
+
+ function popoverText(selectedDate)
+ {
+	var text = '';
+
+	text += "<a class=\"btn btn-xs\" onclick=\"add1DayMeet('"+selectedDate+"')\">Событие на 1 день</a>";
+
+	if(from == '')
+	text += "<a class=\"btn btn-xs\" onclick=\"alert('setStartMeet("+selectedDate+")')\">Дата начала</a>";
+	else
+	text += "<a class=\"btn btn-xs\" onclick=\"alert('setEndMeet("+selectedDate+")')\">Дата окончания</a>";
+
+	return text;
+		
+ }
+ 
+ $( "#selected_date" ).popover("show");
+ 
   $(function() {
-    $( "#from" ).datepicker({
+    $( "#plane" ).datepicker({
       numberOfMonths: 12,
-      showButtonPanel: true,
-      dateFormat: 'dd-MM-yyyy',
+      dateFormat: 'dd-mm-yy',
       firstDay: 1, // rows starts on Monday
       minDate: new Date(),
       maxDate: '+1Y',
+      onSelect: function(selectedDate) {
+          setTimeout(function(){setPopover(selectedDate)},50);
+      }
+      
     });
-    
+    $.datepicker.setDefaults( $.datepicker.regional[ "ru" ] );
+
+    $('.ui-datepicker-inline').css('width','70%');
+    $('.ui-datepicker-row-break').css('width','auto');
+      
+
   });
-  </script>
+  
+</script>

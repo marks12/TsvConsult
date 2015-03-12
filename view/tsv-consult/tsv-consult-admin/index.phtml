@@ -37,7 +37,6 @@
   </div>
 </div>
 
-
 	<div class="selected_date">
 		<h1>Запланировано</h1>
 		<div id="selected_date" data-toggle="popover" title="Popover title" data-content="And here's some amazing content. It's very engaging. Right?">Ничего не выбрано</div>
@@ -65,6 +64,7 @@
 		$('#selected_date').html(newMeet(date));
 	else
 		$('#selected_date').append(newMeet(date));
+	from = '';
  }
 
  function newMeet(dateStart, dateEnd)

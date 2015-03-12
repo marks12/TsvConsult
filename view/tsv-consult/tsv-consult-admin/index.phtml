@@ -25,6 +25,8 @@
 	width: 30%;
 	min-height: 550px;
 }
+.panel-body textarea {width:100%;}
+
 </style>
 <div class="panel panel-default">
   <div class="panel-body">
@@ -46,7 +48,7 @@
 
 <script>
  var from = '';
- var to = '';
+
  var day, month, year;
 
  function get2digits(data)
@@ -68,14 +70,21 @@
  function newMeet(dateStart, dateEnd)
  {
 	var text = '';
-	var dateStart, dateEnd;
+
+	text += '<div class="panel panel-default"><div class="panel-heading">';
 	
-	if(dateEnd != 'undefined')
+	if(dateEnd)
 	text += 'Даты: '+dateStart + ' - ' + dateEnd + ' <br>';
 	else
 	text += 'Дата события: '+dateStart;
-		
 
+
+	text += '</div><div class="panel-body"><textarea placeholder="Описание мероприятия"></textarea></div></div>';
+	
+	setTimeout(function(){$('.popover').remove()},100);
+
+	text += '<br>';
+	
 	return text;
  }
  
@@ -103,12 +112,26 @@
 	text += "<a class=\"btn btn-xs\" onclick=\"add1DayMeet('"+selectedDate+"')\">Событие на 1 день</a>";
 
 	if(from == '')
-	text += "<a class=\"btn btn-xs\" onclick=\"alert('setStartMeet("+selectedDate+")')\">Дата начала</a>";
+	text += "<a class=\"btn btn-xs\" onclick=\"setStartMeet('"+selectedDate+"')\">Дата начала</a>";
 	else
-	text += "<a class=\"btn btn-xs\" onclick=\"alert('setEndMeet("+selectedDate+")')\">Дата окончания</a>";
+	text += "<a class=\"btn btn-xs\" onclick=\"setEndMeet('"+selectedDate+"')\">Дата окончания</a>";
 
 	return text;
 		
+ }
+
+ function setStartMeet(date)
+ {
+	 from = date;
+	 setTimeout(function(){$('.popover').remove()},100);
+ }
+ function setEndMeet(date)
+ {
+	if($('#selected_date').html() == 'Ничего не выбрано')
+		$('#selected_date').html(newMeet(from,date));
+	else
+		$('#selected_date').append(newMeet(from,date));
+	from = '';
  }
  
  $( "#selected_date" ).popover("show");
@@ -116,7 +139,7 @@
   $(function() {
     $( "#plane" ).datepicker({
       numberOfMonths: 12,
-      dateFormat: 'dd-mm-yy',
+      dateFormat: 'dd.mm.yy',
       firstDay: 1, // rows starts on Monday
       minDate: new Date(),
       maxDate: '+1Y',

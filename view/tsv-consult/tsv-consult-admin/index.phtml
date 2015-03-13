@@ -54,9 +54,12 @@
 		</div>
 		<div class="clearfix"></div>
 		<div id="standart_managers">
-			<h3>Консультанты назначаемые по-умолчанию</h3>
+			<h3>Настройки по-умолчанию</h3>
 			<div id="manager_list">
-				Нет назначенных по-умолчанию консультантов
+				Консультанты: нет
+			</div>
+			<div id="manager_list">
+				Описание мероприятия: нет
 			</div>
 		</div>
 	</div>
@@ -185,19 +188,22 @@
   $( document ).ready(function() {
 	  $('.selected_date_inner').first().css('height',$('#plane').height()-$('#standart_managers').height()-150+'px');
 });
-  
+
 function  hideCalendar()
 {
-	$('.selected_date .panel').css('margin-right','20px');
+	$('.selected_date .panel').css('margin-left','5px');
+	$('.selected_date .panel').first().css('margin-left','0px');
 	$('.selected_date .panel').css('float','left');
-	$('.selected_date .panel').css('width','400px');
+	$('.selected_date .panel').css('width','33%');
+
 	$('.selected_date').css('width','100%');
+	
 	$('#plane').addClass('hide');
 	$('#show_calendar_btn').removeClass('hide');
 	$('#hide_calendar_btn').addClass('hide');
-	
+	$('.selected_date_inner').css('height','auto');
 }
-  
+
 function  showCalendar()
 {
 	$('.selected_date .panel').css('margin-right','8px');
@@ -207,7 +213,7 @@ function  showCalendar()
 	$('#plane').removeClass('hide');
 	$('#hide_calendar_btn').removeClass('hide');
 	$('#show_calendar_btn').addClass('hide');
-	
+	$('.selected_date_inner').first().css('height',161*3+20+'px');
 }
-  
+
 </script>

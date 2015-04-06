@@ -21,7 +21,7 @@
         "php": ">=5.3.3",
         "zendframework/zend-cache":	"~2.1",
 	"zf-commons/zfc-admin":		"dev-master",
-	"doctrine/doctrine-orm-module":	"dev-master"
+	"doctrine/doctrine-orm-module":	"0.*"
     },
      "suggests": {
           "zendframework/zend-developer-tools": "Comment 0",

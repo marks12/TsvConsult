@@ -20,7 +20,7 @@
     "require": {
         "php": ">=5.3.3",
         "zendframework/zend-cache":	"~2.1",
-	"zf-commons/zfc-admin":		"dev-master",
+	"zf-commons/zfc-admin":		"*",
 	"doctrine/doctrine-orm-module":	"*"
     },
      "suggests": {
